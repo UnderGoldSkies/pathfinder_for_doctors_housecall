@@ -1,1 +1,4 @@
-osmnx
+osmnx==1.9.1
+pathfinder-for-doctor-housecall==0.0.1
+requests==2.31.0
+shapely==2.0.2
