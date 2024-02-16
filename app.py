@@ -11,8 +11,7 @@ from itertools import permutations
 
 from htmlTemplates import directions_map
 
-google_api_key = st.secrets["google_api_key"]
-
+google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
 
 
