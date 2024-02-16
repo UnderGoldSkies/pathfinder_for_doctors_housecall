@@ -66,11 +66,13 @@ def validate_postal_code(postal_code):
 
 def main():
 
-        # header
+    # header
     st.title("Dr Ant-Thony")
     mode = "place"
     location = "119074"
     st.write("Empowering Healing Journeys: Your AI Pathfinder for Optimal Patient Care, Navigating the Roads of Compassion with Efficiency")
+
+    st.image('DisplayPic.jpg', caption='Dr Anthony')
 
     shortest_route = None
 
