@@ -67,12 +67,12 @@ def validate_postal_code(postal_code):
 def main():
 
     # header
-    st.title("Dr Ant-Thony")
+    st.title("Dr Ant-Thony :ant:")
     mode = "place"
     location = "119074"
-    st.write("Empowering Healing Journeys: Your AI Pathfinder for Optimal Patient Care, Navigating the Roads of Compassion with Efficiency")
+    st.write("Optimizing Order of Visits for Maximum Efficiency :red_car:")
 
-    st.image('DisplayPic.jpg', caption='Dr Anthony')
+    placeholder = st.image('DisplayPic.jpg', caption='Dr Anthony')
 
     shortest_route = None
 
@@ -83,10 +83,10 @@ def main():
     duration_of_full_route_dict ={}
 
     with st.sidebar:
-        st.subheader("List of Postal Codes to Visit")
+        st.subheader('List of Postal Codes to Visit :derelict_house_building:')
 
         # Get the number of textboxes from the user
-        num_textboxes = st.slider("Select the total of Postal Code:", 1, 10, 3)
+        num_textboxes = st.slider(":violet[Input the total of Postal Code:]", 1, 10, 5)
 
         # Generate and display the textboxes
         postal_code_list = generate_textboxes(num_textboxes)
@@ -102,7 +102,9 @@ def main():
 
             if not invalid_postal_codes:
                 st.sidebar.write("All postal codes are valid.")
+
                 if st.sidebar.button("Optimize"):
+                    placeholder = st.empty()
                     with st.spinner("Ant-Thony is Working on it"):
                         postal_code_distance_matrix_dict = generate_pair_distance(postal_code_list)
                         permutations_list = list(permutations(postal_code_list))
