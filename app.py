@@ -145,6 +145,13 @@ def main():
                         shortest_route = shortest_route.replace("(","")
                         shortest_route = shortest_route.replace(")","")
                         shortest_route = shortest_route.split(",")
+                    st.markdown("""
+                        <style>
+                            section[data-testid="stSidebar"][aria-expanded="true"]{
+                                display: none;
+                            }
+                        </style>
+                        """, unsafe_allow_html=True)
 
 
     if shortest_route != None:
