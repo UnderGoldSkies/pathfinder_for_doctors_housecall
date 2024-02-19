@@ -167,8 +167,8 @@ def main():
             shortest_route = None
             st.markdown("""
                 <style>
-                    section[data-testid="stSidebar"][aria-expanded="false"]{
-                        display: initial;  /* Set it to 'block' or 'initial' to show the sidebar */
+                    section[data-testid="stSidebar"][aria-expanded="true"] {
+                        display: block !important;  /* Set it to 'block' to show the sidebar when expanded */
                     }
                 </style>
                 """, unsafe_allow_html=True)
