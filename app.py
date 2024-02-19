@@ -163,12 +163,12 @@ def main():
                 st.markdown(f"{generate_ordinal_suffix(i+1)} Visit:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
             st.components.v1.html(directions_map.format(ori=shortest_route[i],dest=shortest_route[i+1],google_api_key=google_api_key), height=400)
 
-        if st.button("Change Address"):
+        if st.button(":red[Change Address]"):
             shortest_route = None
             st.markdown("""
                 <style>
                     section[data-testid="stSidebar"][aria-expanded="true"]{
-                        display: block;  /* Set it to 'block' or 'initial' to show the sidebar */
+                        display: initial;  /* Set it to 'block' or 'initial' to show the sidebar */
                     }
                 </style>
                 """, unsafe_allow_html=True)
