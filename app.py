@@ -155,12 +155,23 @@ def main():
 
 
     if shortest_route != None:
+
         for i in range(len(shortest_route)-1):
             if i == len(shortest_route)-2:
                 st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
             else:
                 st.markdown(f"{generate_ordinal_suffix(i+1)} Visit:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
             st.components.v1.html(directions_map.format(ori=shortest_route[i],dest=shortest_route[i+1],google_api_key=google_api_key), height=400)
+
+        if st.button("Change Address"):
+            shortest_route = None
+            st.markdown("""
+                <style>
+                    section[data-testid="stSidebar"][aria-expanded="true"]{
+                        display: block;  /* Set it to 'block' or 'initial' to show the sidebar */
+                    }
+                </style>
+                """, unsafe_allow_html=True)
 
 
 
