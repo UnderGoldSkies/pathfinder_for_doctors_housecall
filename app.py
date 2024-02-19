@@ -102,56 +102,57 @@ def main():
     postal_code_distance_matrix_dict ={}
     duration_of_full_route_dict ={}
 
-    with st.sidebar:
-        st.title("Dr Ant-Thony :ant:")
+    if shortest_route == None:
+        with st.sidebar:
+            st.title("Dr Ant-Thony :ant:")
 
-        st.subheader(':violet[Step 1]')
-        # Get the number of textboxes from the user
-        num_textboxes = st.slider("Select Number of Visits::derelict_house_building:", 3, 10, 5)
-        st.subheader(':violet[Step 2]')
-        st.write('Input Address name/ Postal code to Visit')
-        # Generate and display the textboxes
-        postal_code_list = generate_textboxes(num_textboxes)
+            st.subheader(':violet[Step 1]')
+            # Get the number of textboxes from the user
+            num_textboxes = st.slider("Select Number of Visits::derelict_house_building:", 3, 10, 5)
+            st.subheader(':violet[Step 2]')
+            st.write('Input Address name/ Postal code to Visit')
+            # Generate and display the textboxes
+            postal_code_list = generate_textboxes(num_textboxes)
 
-        # Check for missing boxes
-        if any(element == "" for element in postal_code_list):
-            st.write(":orange[There is at least one missing visits.]")
-        # Check for any repeat of visits
-        if len(set(postal_code_list[1:-1])) < len(postal_code_list[1:-1]):
-            st.write(":orange[Duplicated Visits Detected, Please Check Entry]")
-        else:
-            invalid_postal_codes = []
-            for i, value in enumerate(postal_code_list):
-                if validate_postal_code(value) != True:
-                    if i == 0:
-                        st.write(f":red[Start Point is not valid]")
-                    elif i == (num_textboxes-1):
-                        st.write(f":red[End Point is not valid]")
-                    else:
-                        st.write(f":red[House Visit {i + 1} is not valid]")
-                    invalid_postal_codes.append(value)
+            # Check for missing boxes
+            if any(element == "" for element in postal_code_list):
+                st.write(":orange[There is at least one missing visits.]")
+            # Check for any repeat of visits
+            if len(set(postal_code_list[1:-1])) < len(postal_code_list[1:-1]):
+                st.write(":orange[Duplicated Visits Detected, Please Check Entry]")
+            else:
+                invalid_postal_codes = []
+                for i, value in enumerate(postal_code_list):
+                    if validate_postal_code(value) != True:
+                        if i == 0:
+                            st.write(f":red[Start Point is not valid]")
+                        elif i == (num_textboxes-1):
+                            st.write(f":red[End Point is not valid]")
+                        else:
+                            st.write(f":red[House Visit {i + 1} is not valid]")
+                        invalid_postal_codes.append(value)
 
-            if not invalid_postal_codes:
-                st.sidebar.write(":green[All Address are valid.]")
-                st.subheader(':violet[Step 3]')
-                st.write('Press "Optimize" to generate Visit Plan')
-                if st.sidebar.button("Optimize"):
-                    placeholder.empty()
-                    with st.spinner("Ant-Thony is Working on it"):
-                        postal_code_distance_matrix_dict = generate_pair_distance(postal_code_list)
-                        permutations_list = list(permutations(postal_code_list))
-                        duration_of_full_route_dict = generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list)
-                        shortest_route = min(duration_of_full_route_dict, key=duration_of_full_route_dict.get)
-                        shortest_route = shortest_route.replace("(","")
-                        shortest_route = shortest_route.replace(")","")
-                        shortest_route = shortest_route.split(",")
-                    st.markdown("""
-                        <style>
-                            section[data-testid="stSidebar"][aria-expanded="true"]{
-                                display: none;
-                            }
-                        </style>
-                        """, unsafe_allow_html=True)
+                if not invalid_postal_codes:
+                    st.sidebar.write(":green[All Address are valid.]")
+                    st.subheader(':violet[Step 3]')
+                    st.write('Press "Optimize" to generate Visit Plan')
+                    if st.sidebar.button("Optimize"):
+                        placeholder.empty()
+                        with st.spinner("Ant-Thony is Working on it"):
+                            postal_code_distance_matrix_dict = generate_pair_distance(postal_code_list)
+                            permutations_list = list(permutations(postal_code_list))
+                            duration_of_full_route_dict = generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list)
+                            shortest_route = min(duration_of_full_route_dict, key=duration_of_full_route_dict.get)
+                            shortest_route = shortest_route.replace("(","")
+                            shortest_route = shortest_route.replace(")","")
+                            shortest_route = shortest_route.split(",")
+                        st.markdown("""
+                            <style>
+                                section[data-testid="stSidebar"][aria-expanded="true"]{
+                                    display: none;
+                                }
+                            </style>
+                            """, unsafe_allow_html=True)
 
 
     if shortest_route != None:
