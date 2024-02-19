@@ -164,7 +164,7 @@ def main():
             st.components.v1.html(directions_map.format(ori=shortest_route[i],dest=shortest_route[i+1],google_api_key=google_api_key), height=400)
 
         if st.button(":red[Change Address]"):
-            shortest_route = None
+            #shortest_route = None
             st.markdown("""
             <style>
             section[data-testid='stSidebar'] > div {
