@@ -166,12 +166,21 @@ def main():
         if st.button(":red[Change Address]"):
             shortest_route = None
             st.markdown("""
-                <style>
-                    section[data-testid="stSidebar"][aria-expanded="true"] {
-                        display: block !important;  /* Set it to 'block' to show the sidebar when expanded */
-                    }
-                </style>
-                """, unsafe_allow_html=True)
+            <style>
+            section[data-testid='stSidebar'] > div {
+                height: 100%;
+                width: 400px;
+                position: relative;
+                z-index: 1;
+                top: 0;
+                left: -5;
+                background-color: #ADD8E6;
+                overflow-x: hidden;
+                transition: 0.5s ease;
+                padding-top: -10px;
+                white-space: nowrap;
+            <style>
+                """, unsafe_allow_html= True)
 
 
 
