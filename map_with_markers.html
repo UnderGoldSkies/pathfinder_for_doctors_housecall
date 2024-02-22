@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_52aca49e73dadc4520ed2aba4781d15b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_52aca49e73dadc4520ed2aba4781d15b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_52aca49e73dadc4520ed2aba4781d15b = L.map(
+                "map_52aca49e73dadc4520ed2aba4781d15b",
+                {
+                    center: [1.3409630426821544, 103.75114346250643],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ab7ccb20964c87e7411570877c6e4fcc = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_ab7ccb20964c87e7411570877c6e4fcc.addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+            var marker_039bcbda5d3d351ff757b1b9d7be2a8e = L.marker(
+                [1.3769739817533, 103.739293156619],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_36ba7e7951b1560d53eba76839d2f12d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_09ff926d8499a776f9e57d9ca8e2f5f9 = $(`<div id="html_09ff926d8499a776f9e57d9ca8e2f5f9" style="width: 100.0%; height: 100.0%;">Postal Code: 682488.0</div>`)[0];
+                popup_36ba7e7951b1560d53eba76839d2f12d.setContent(html_09ff926d8499a776f9e57d9ca8e2f5f9);
+            
+        
+
+        marker_039bcbda5d3d351ff757b1b9d7be2a8e.bindPopup(popup_36ba7e7951b1560d53eba76839d2f12d)
+        ;
+
+        
+    
+    
+            var marker_77b09f8cbb389805b3dd3c5e0376e0b4 = L.marker(
+                [1.30940810453696, 103.788085613356],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_7c19d5dda37722528a615273edf3aff1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bde1db8e2fca481323b83b1d00541b67 = $(`<div id="html_bde1db8e2fca481323b83b1d00541b67" style="width: 100.0%; height: 100.0%;">Postal Code: 270016.0</div>`)[0];
+                popup_7c19d5dda37722528a615273edf3aff1.setContent(html_bde1db8e2fca481323b83b1d00541b67);
+            
+        
+
+        marker_77b09f8cbb389805b3dd3c5e0376e0b4.bindPopup(popup_7c19d5dda37722528a615273edf3aff1)
+        ;
+
+        
+    
+    
+            var marker_5d5f69c28b13191fda40f870a6dda700 = L.marker(
+                [1.30905394546184, 103.794063120888],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_0c3a91aecdf9502ce30d6123714d131e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_15e26c6ebfc1929a02cab7760964d118 = $(`<div id="html_15e26c6ebfc1929a02cab7760964d118" style="width: 100.0%; height: 100.0%;">Postal Code: 271011.0</div>`)[0];
+                popup_0c3a91aecdf9502ce30d6123714d131e.setContent(html_15e26c6ebfc1929a02cab7760964d118);
+            
+        
+
+        marker_5d5f69c28b13191fda40f870a6dda700.bindPopup(popup_0c3a91aecdf9502ce30d6123714d131e)
+        ;
+
+        
+    
+    
+            var marker_56cf86fea415e63d1b15a1f2fb70d0c1 = L.marker(
+                [1.35057364770509, 103.695465764302],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_b8e035a9022f62c402470db8b8e979dd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0e09f52c0e32995cb2acde8d7c0b5460 = $(`<div id="html_0e09f52c0e32995cb2acde8d7c0b5460" style="width: 100.0%; height: 100.0%;">Postal Code: 640866.0</div>`)[0];
+                popup_b8e035a9022f62c402470db8b8e979dd.setContent(html_0e09f52c0e32995cb2acde8d7c0b5460);
+            
+        
+
+        marker_56cf86fea415e63d1b15a1f2fb70d0c1.bindPopup(popup_b8e035a9022f62c402470db8b8e979dd)
+        ;
+
+        
+    
+    
+            var marker_a9bc3c203f9491165915d760eced2596 = L.marker(
+                [1.34838399787614, 103.753520312233],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_23dfc080347222fc4577276a8252a3ce = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_04a6607e8c3918c55d61456eb131a340 = $(`<div id="html_04a6607e8c3918c55d61456eb131a340" style="width: 100.0%; height: 100.0%;">Postal Code: 650227.0</div>`)[0];
+                popup_23dfc080347222fc4577276a8252a3ce.setContent(html_04a6607e8c3918c55d61456eb131a340);
+            
+        
+
+        marker_a9bc3c203f9491165915d760eced2596.bindPopup(popup_23dfc080347222fc4577276a8252a3ce)
+        ;
+
+        
+    
+    
+            var marker_3d15950c090bfec664dfc67850712cbd = L.marker(
+                [1.33648093487642, 103.721301065602],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_4f9308a67bec47d9fa3327b7b5ff2610 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7ce23031fbc771699a43dcee508ce876 = $(`<div id="html_7ce23031fbc771699a43dcee508ce876" style="width: 100.0%; height: 100.0%;">Postal Code: 610359.0</div>`)[0];
+                popup_4f9308a67bec47d9fa3327b7b5ff2610.setContent(html_7ce23031fbc771699a43dcee508ce876);
+            
+        
+
+        marker_3d15950c090bfec664dfc67850712cbd.bindPopup(popup_4f9308a67bec47d9fa3327b7b5ff2610)
+        ;
+
+        
+    
+    
+            var marker_3c31391f80627ce3bb3dacd75c1c3d63 = L.marker(
+                [1.35586668656533, 103.766275204545],
+                {}
+            ).addTo(map_52aca49e73dadc4520ed2aba4781d15b);
+        
+    
+        var popup_968565f2ec090cf6c156fd5545b316b4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1627a4abe09b5e0952a35f646926751b = $(`<div id="html_1627a4abe09b5e0952a35f646926751b" style="width: 100.0%; height: 100.0%;">Postal Code: 598735.0</div>`)[0];
+                popup_968565f2ec090cf6c156fd5545b316b4.setContent(html_1627a4abe09b5e0952a35f646926751b);
+            
+        
+
+        marker_3c31391f80627ce3bb3dacd75c1c3d63.bindPopup(popup_968565f2ec090cf6c156fd5545b316b4)
+        ;
+
+        
+    
+</script>
+</html>
