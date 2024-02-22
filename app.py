@@ -68,14 +68,13 @@ def main():
                         shortest_route = shortest_route.replace("(","")
                         shortest_route = shortest_route.replace(")","")
                         shortest_route = shortest_route.split(",")
-                        st.write(duration_of_full_route_dict)
-                    # st.markdown("""
-                    #     <style>
-                    #         section[data-testid="stSidebar"][aria-expanded="true"]{
-                    #             display: none;
-                    #         }
-                    #     </style>
-                    #     """, unsafe_allow_html=True)
+                    st.markdown("""
+                        <style>
+                            section[data-testid="stSidebar"][aria-expanded="true"]{
+                                display: none;
+                            }
+                        </style>
+                        """, unsafe_allow_html=True)
 
 
     if shortest_route != None:
