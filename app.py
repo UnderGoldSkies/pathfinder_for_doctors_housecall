@@ -68,27 +68,30 @@ def main():
 
         st.header(':violet[Step 3]')
         st.write('Press "Optimize" to generate Visit Plan')
-        if st.sidebar.button("Optimize"):
-            st.write(f"validation_flag_2= {st.session_state.validation_flag}")
-            if st.session_state.validation_flag != True:
-                st.sidebar.write("Ensure Address are Valided before Optimizing")
-            else:
-                placeholder.empty()
-                with st.spinner("Ant-Thony is Working on it"):
-                    postal_code_distance_matrix_dict = generate_pair_distance(postal_code_list)
-                    permutations_list = list(permutations(postal_code_list))
-                    duration_of_full_route_dict = generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list)
-                    shortest_route = min(duration_of_full_route_dict, key=duration_of_full_route_dict.get)
-                    shortest_route = shortest_route.replace("(","")
-                    shortest_route = shortest_route.replace(")","")
-                    shortest_route = shortest_route.split(",")
-                st.markdown("""
-                    <style>
-                        section[data-testid="stSidebar"][aria-expanded="true"]{
-                            display: none;
-                        }
-                    </style>
-                    """, unsafe_allow_html=True)
+        # Enable/disable based on the value of validation flag
+        optimize_button_enabled = st.session_state.validation_flag
+
+        optimize_button_clicked = st.sidebar.button("Optimize", key="optimize_button", disabled=not optimize_button_enabled)
+        if optimize_button_clicked:
+            placeholder.empty()
+            with st.spinner("Ant-Thony is Working on it"):
+                postal_code_distance_matrix_dict = generate_pair_distance(postal_code_list)
+                permutations_list = list(permutations(postal_code_list))
+                duration_of_full_route_dict = generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list)
+                shortest_route = min(duration_of_full_route_dict, key=duration_of_full_route_dict.get)
+                shortest_route = shortest_route.replace("(","")
+                shortest_route = shortest_route.replace(")","")
+                shortest_route = shortest_route.split(",")
+            st.markdown("""
+                <style>
+                    section[data-testid="stSidebar"][aria-expanded="true"]{
+                        display: none;
+                    }
+                </style>
+                """, unsafe_allow_html=True)
+
+        else:
+            st.sidebar.write("Ensure Address are Valided before Optimizing")
 
 
     if shortest_route != None:
