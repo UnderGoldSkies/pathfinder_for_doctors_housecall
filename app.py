@@ -5,6 +5,7 @@ from htmlTemplates import directions_map
 from functions.preprocessing import generate_ordinal_suffix,generate_pair_distance,generate_permutation_duration,generate_textboxes,validate_postal_code
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
+global validation_flag
 
 def main():
     pg_title = "Dr Ant-Thony :ant:"
@@ -20,13 +21,12 @@ def main():
     shortest_route = None
 
     # Validation flag
-    global validation_flag
-    validation_flag = False
     invalid_postal_codes = []
     postal_code_distance_matrix_dict ={}
     duration_of_full_route_dict ={}
 
     with st.sidebar:
+        validation_flag = False
         st.title("Dr Ant-Thony :ant:")
         st.subheader(':green[Enter List of Address to Visit and Dr Ant-Thony will plan it out]')
         st.header(':blue[Instructions:] ')
