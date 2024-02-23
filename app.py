@@ -51,7 +51,17 @@ def main():
                 st.write(":orange[Duplicated House Visit Detected, Please Check Entry]")
             else:
                 for i, value in enumerate(postal_code_list):
-                    if validate_postal_code(value) != True:
+                    result = validate_postal_code(value)
+                    if result == "CONFIRMED":
+                        continue
+                    elif result == "UNCONFIRMED_BUT_PLAUSIBLE":
+                        if i == 0:
+                            st.write(f":red[Start Point Address is not fully validated in google maps, Do check before Optimizing]")
+                        elif i == (num_textboxes-1):
+                            st.write(f":red[End Point Address is not fully validated in google maps, Do check before Optimizing]")
+                        else:
+                            st.write(f":red[House Visit {i + 1} is not fully validated in google maps, Do check before Optimizing]")
+                    else:
                         if i == 0:
                             st.write(f":red[Start Point is not valid]")
                         elif i == (num_textboxes-1):
