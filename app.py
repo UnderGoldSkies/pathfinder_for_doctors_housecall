@@ -52,6 +52,7 @@ def main():
             else:
                 for i, value in enumerate(postal_code_list):
                     result = validate_postal_code(value)
+                    st.write(result)
                     if result == "CONFIRMED":
                         continue
                     elif result == "UNCONFIRMED_BUT_PLAUSIBLE":

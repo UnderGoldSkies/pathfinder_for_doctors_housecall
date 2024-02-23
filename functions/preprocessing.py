@@ -77,6 +77,6 @@ def validate_postal_code(postal_code):
 
     response = gmaps.addressvalidation(postal_code, regionCode="SG")
     confirmation_level = response['result']['address']['addressComponents'][0]['confirmationLevel']
-    result = confirmation_level == "CONFIRMED" or confirmation_level == "UNCONFIRMED_BUT_PLAUSIBLE"
+    #result = confirmation_level == "CONFIRMED" or confirmation_level == "UNCONFIRMED_BUT_PLAUSIBLE"
 
-    return result
+    return confirmation_level
