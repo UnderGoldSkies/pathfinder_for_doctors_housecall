@@ -20,6 +20,7 @@ def main():
     shortest_route = None
 
     # Validation flag
+    validation_flag = False
     invalid_postal_codes = []
     postal_code_distance_matrix_dict ={}
     duration_of_full_route_dict ={}
@@ -55,15 +56,15 @@ def main():
                         else:
                             st.write(f":red[House Visit {i + 1} is not valid]")
                         invalid_postal_codes.append(value)
-                    else:
-                        st.sidebar.write(":green[All Address are valid.]")
-                        invalid_postal_codes = None
+                if invalid_postal_codes == []:
+                    st.sidebar.write(":green[All Address are valid.]")
+                    validation_flag = True
 
 
         st.header(':violet[Step 3]')
         st.write('Press "Optimize" to generate Visit Plan')
         if st.sidebar.button("Optimize"):
-            if invalid_postal_codes != None:
+            if validation_flag != True:
                 st.sidebar.write("Ensure Address are Valided before Optimizing")
             else:
                 placeholder.empty()
