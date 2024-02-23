@@ -69,7 +69,7 @@ def generate_textboxes(num_textboxes):
             textboxes.append(textbox_value)
 
         else:
-            textbox_value = st.text_input(f"House Visit {i}", "119074")
+            textbox_value = st.text_input(f"House Visit {i}", "")
             textboxes.append(textbox_value)
     return textboxes
 
