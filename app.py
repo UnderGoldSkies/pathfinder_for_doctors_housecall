@@ -60,12 +60,13 @@ def main():
                 if invalid_postal_codes == []:
                     st.sidebar.write(":green[All Address are valid.]")
                     validation_flag = True
+                    st.write(f"validation_flag_1= {validation_flag}")
 
 
         st.header(':violet[Step 3]')
         st.write('Press "Optimize" to generate Visit Plan')
         if st.sidebar.button("Optimize"):
-            st.write(f"validation_flag = {validation_flag}")
+            st.write(f"validation_flag_2= {validation_flag}")
             if validation_flag != True:
                 st.sidebar.write("Ensure Address are Valided before Optimizing")
             else:
