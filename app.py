@@ -20,8 +20,7 @@ def main():
     shortest_route = None
 
     # Validation flag
-    all_validated = True
-
+    invalid_postal_codes = []
     postal_code_distance_matrix_dict ={}
     duration_of_full_route_dict ={}
 
@@ -47,7 +46,6 @@ def main():
             if len(set(postal_code_list[1:-1])) < len(postal_code_list[1:-1]):
                 st.write(":orange[Duplicated House Visit Detected, Please Check Entry]")
             else:
-                invalid_postal_codes = []
                 for i, value in enumerate(postal_code_list):
                     if validate_postal_code(value) != True:
                         if i == 0:
@@ -57,12 +55,17 @@ def main():
                         else:
                             st.write(f":red[House Visit {i + 1} is not valid]")
                         invalid_postal_codes.append(value)
+                    else:
+                        st.sidebar.write(":green[All Address are valid.]")
+                        invalid_postal_codes = None
 
-        if not invalid_postal_codes:
-            st.sidebar.write(":green[All Address are valid.]")
-            st.header(':violet[Step 3]')
-            st.write('Press "Optimize" to generate Visit Plan')
-            if st.sidebar.button("Optimize"):
+
+        st.header(':violet[Step 3]')
+        st.write('Press "Optimize" to generate Visit Plan')
+        if st.sidebar.button("Optimize"):
+            if invalid_postal_codes != None:
+                st.sidebar.write("Ensure Address are Valided before Optimizing")
+            else:
                 placeholder.empty()
                 with st.spinner("Ant-Thony is Working on it"):
                     postal_code_distance_matrix_dict = generate_pair_distance(postal_code_list)
