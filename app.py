@@ -27,7 +27,7 @@ def main():
 
     with st.sidebar:
         st.title("Dr Ant-Thony :ant:")
-        st.subheaderheader(':green[Enter List of Address to Visit and Dr Ant-Thony will plan it out]')
+        st.subheader(':green[Enter List of Address to Visit and Dr Ant-Thony will plan it out]')
         st.header(':yellow[Instructions: ')
         st.header(':yellow[Follow :violet[Step 1 to Step 3]]')
         st.header(':yellow[To Generate Order of Visits]')
