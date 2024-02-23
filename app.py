@@ -56,11 +56,11 @@ def main():
                         continue
                     elif result == "UNCONFIRMED_BUT_PLAUSIBLE":
                         if i == 0:
-                            st.write(f":red[Start Point Address is not fully validated in google maps, Do check before Optimizing]")
+                            st.write(f":red[Do double check Start Point Address before Optimizing]")
                         elif i == (num_textboxes-1):
-                            st.write(f":red[End Point Address is not fully validated in google maps, Do check before Optimizing]")
+                            st.write(f":red[Do double check End Point Address before Optimizing]")
                         else:
-                            st.write(f":red[House Visit {i} is not fully validated in google maps, Do check before Optimizing]")
+                            st.write(f":red[Do double check House Visit {i} before Optimizing]")
                     else:
                         if i == 0:
                             st.write(f":red[Start Point is not valid]")
