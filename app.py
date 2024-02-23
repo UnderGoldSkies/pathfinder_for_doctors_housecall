@@ -71,7 +71,6 @@ def main():
                         invalid_postal_codes.append(value)
 
                 if invalid_postal_codes == []:
-                    st.sidebar.write(":green[All Address are valid.]")
                     st.session_state.validation_flag = True
 
 
