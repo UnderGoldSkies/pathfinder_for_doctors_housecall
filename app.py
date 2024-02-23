@@ -5,9 +5,12 @@ from htmlTemplates import directions_map
 from functions.preprocessing import generate_ordinal_suffix,generate_pair_distance,generate_permutation_duration,generate_textboxes,validate_postal_code
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
-validation_flag = False
 
 def main():
+    # Initialize session_state if not already done
+    if 'validation_flag' not in st.session_state:
+        st.session_state.validation_flag = False
+
     pg_title = "Dr Ant-Thony :ant:"
     pg_icon = ":compass:"
     st.set_page_config(page_title=pg_title, page_icon=pg_icon, layout="centered", initial_sidebar_state="expanded", menu_items=None)
@@ -21,7 +24,6 @@ def main():
     shortest_route = None
 
     # Validation flag
-    global validation_flag
     invalid_postal_codes = []
     postal_code_distance_matrix_dict ={}
     duration_of_full_route_dict ={}
@@ -60,15 +62,15 @@ def main():
                 st.write(f"invalid_postal_codes = {invalid_postal_codes}")
                 if invalid_postal_codes == []:
                     st.sidebar.write(":green[All Address are valid.]")
-                    validation_flag = True
-                    st.write(f"validation_flag_1= {validation_flag}")
+                    st.session_state.validation_flag = True
+                    st.write(f"validation_flag_1= {st.session_state.validation_flag}")
 
 
         st.header(':violet[Step 3]')
         st.write('Press "Optimize" to generate Visit Plan')
         if st.sidebar.button("Optimize"):
-            st.write(f"validation_flag_2= {validation_flag}")
-            if validation_flag != True:
+            st.write(f"validation_flag_2= {st.session_state.validation_flag}")
+            if st.session_state.validation_flag != True:
                 st.sidebar.write("Ensure Address are Valided before Optimizing")
             else:
                 placeholder.empty()
