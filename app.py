@@ -20,6 +20,7 @@ def main():
     shortest_route = None
 
     # Validation flag
+    global validation_flag
     validation_flag = False
     invalid_postal_codes = []
     postal_code_distance_matrix_dict ={}
