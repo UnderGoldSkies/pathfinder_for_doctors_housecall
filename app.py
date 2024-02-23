@@ -52,7 +52,6 @@ def main():
             else:
                 for i, value in enumerate(postal_code_list):
                     result = validate_postal_code(value)
-                    st.write(result)
                     if result == "CONFIRMED":
                         continue
                     elif result == "UNCONFIRMED_BUT_PLAUSIBLE":
@@ -61,14 +60,14 @@ def main():
                         elif i == (num_textboxes-1):
                             st.write(f":red[End Point Address is not fully validated in google maps, Do check before Optimizing]")
                         else:
-                            st.write(f":red[House Visit {i + 1} is not fully validated in google maps, Do check before Optimizing]")
+                            st.write(f":red[House Visit {i} is not fully validated in google maps, Do check before Optimizing]")
                     else:
                         if i == 0:
                             st.write(f":red[Start Point is not valid]")
                         elif i == (num_textboxes-1):
                             st.write(f":red[End Point is not valid]")
                         else:
-                            st.write(f":red[House Visit {i + 1} is not valid]")
+                            st.write(f":red[House Visit {i} is not valid]")
                         invalid_postal_codes.append(value)
 
                 if invalid_postal_codes == []:
