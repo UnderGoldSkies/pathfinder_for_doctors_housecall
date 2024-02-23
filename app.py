@@ -28,9 +28,9 @@ def main():
     with st.sidebar:
         st.title("Dr Ant-Thony :ant:")
         st.subheader(':green[Enter List of Address to Visit and Dr Ant-Thony will plan it out]')
-        st.header(':yellow[Instructions: ')
-        st.header(':yellow[Follow :violet[Step 1 to Step 3]]')
-        st.header(':yellow[To Generate Order of Visits]')
+        st.header(':blue[Instructions:] ')
+        st.header(':blue[Follow :violet[Step 1 to Step 3]]')
+        st.header(':blue[To Generate Order of Visits]')
         st.header(':violet[Step 1]')
         # Get the number of textboxes from the user
         num_textboxes = st.slider("Slide to Select Number of Patients you need to visit today::derelict_house_building:", 3, 10, 5)
