@@ -60,10 +60,10 @@ def main():
                             st.write(f":red[House Visit {i + 1} is not valid]")
                         invalid_postal_codes.append(value)
                 st.write(f"invalid_postal_codes = {invalid_postal_codes}")
+
                 if invalid_postal_codes == []:
                     st.sidebar.write(":green[All Address are valid.]")
                     st.session_state.validation_flag = True
-                    st.write(f"validation_flag_1= {st.session_state.validation_flag}")
 
 
         st.header(':violet[Step 3]')
