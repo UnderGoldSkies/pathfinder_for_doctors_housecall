@@ -12,6 +12,14 @@ from datetime import datetime
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
 
+def convert_seconds(seconds):
+    # Calculate hours
+    hours = seconds // 3600
+    # Calculate remaining minutes
+    minutes = (seconds % 3600) // 60
+
+    return hours, minutes
+
 
 def generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list):
     duration_of_full_route_dict = {}

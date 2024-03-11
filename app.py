@@ -1,8 +1,9 @@
 import streamlit as st
+import pandas as pd
 from itertools import permutations
 import googlemaps
-from htmlTemplates import directions_map
-from functions.preprocessing import generate_ordinal_suffix,generate_pair_distance,generate_permutation_duration,generate_textboxes,validate_postal_code
+from htmlTemplates import directions_map, directions_map_full
+from functions.preprocessing import generate_ordinal_suffix,generate_pair_distance,generate_permutation_duration,generate_textboxes,validate_postal_code, convert_seconds
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
 
@@ -90,6 +91,12 @@ def main():
                     permutations_list = list(permutations(postal_code_list))
                     duration_of_full_route_dict = generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list)
                     shortest_route = min(duration_of_full_route_dict, key=duration_of_full_route_dict.get)
+
+
+                    lowest_duration = duration_of_full_route_dict[shortest_route]
+                    st.write(lowest_duration)
+
+
                     shortest_route = shortest_route.replace("(","")
                     shortest_route = shortest_route.replace(")","")
                     shortest_route = shortest_route.split(",")
@@ -102,16 +109,36 @@ def main():
                     """, unsafe_allow_html=True)
 
 
-
-
     if shortest_route != None:
+        # Use st.components.v1.html to display the iframe in Streamlit
+        origin = shortest_route[0]
+        destination = shortest_route[-1]
+        waypoints = '|'.join(shortest_route[1:-1])
 
         for i in range(len(shortest_route)-1):
             if i == len(shortest_route)-2:
                 st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
             else:
                 st.markdown(f"{generate_ordinal_suffix(i+1)} Visit:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
-            st.components.v1.html(directions_map.format(ori=shortest_route[i],dest=shortest_route[i+1],google_api_key=google_api_key), height=400)
+
+        google_maps_url = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&waypoints={waypoints}"
+
+        # Create a View in Google Maps button
+        if st.button(':large_green_circle: :violet[View in Google Maps]'):
+            # JavaScript to open a new page
+            js = f"window.open('{google_maps_url}')"  # or "location.href='{url}'" for same tab
+            html = f"<img src onerror='{js}'>"
+            st.markdown(html, unsafe_allow_html=True)
+
+        st.components.v1.html(directions_map_full.format(google_api_key=google_api_key,origin=origin,destination=destination,waypoints=waypoints), width=700, height=500)
+
+        ## Previous version of showing each route
+        # for i in range(len(shortest_route)-1):
+        #     if i == len(shortest_route)-2:
+        #         st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
+        #     else:
+        #         st.markdown(f"{generate_ordinal_suffix(i+1)} Visit:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
+        #     st.components.v1.html(directions_map.format(ori=shortest_route[i],dest=shortest_route[i+1],google_api_key=google_api_key), height=400)
 
         if st.button(":red[Change Address]"):
             shortest_route = None
