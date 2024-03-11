@@ -124,11 +124,15 @@ def main():
         google_maps_url = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&waypoints={waypoints}"
 
         # Create a View in Google Maps button
-        if st.button(':large_green_circle: :violet[View in Google Maps]'):
-            # JavaScript to open a new page
-            js = f"window.open('{google_maps_url}')"  # or "location.href='{url}'" for same tab
-            html = f"<img src onerror='{js}'>"
-            st.markdown(html, unsafe_allow_html=True)
+        # Button-like link in Streamlit
+        button_html = f"""<a href="{google_maps_url}" target="_blank" style="text-decoration: none;">
+            <button style="color: white; background-color: #4CAF50; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">
+                🟢 View in Google Maps
+            </button>
+        </a>"""
+
+        if st.button('View in Google Maps'):
+            st.markdown(button_html, unsafe_allow_html=True)
 
         st.components.v1.html(directions_map_full.format(google_api_key=google_api_key,origin=origin,destination=destination,waypoints=waypoints), width=700, height=500)
 
