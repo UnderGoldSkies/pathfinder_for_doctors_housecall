@@ -124,7 +124,7 @@ def main():
         google_maps_url = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&waypoints={waypoints}"
 
         # Create a View in Google Maps button
-        button_label = ':purple_heart: :violet[View in Google Maps]'):
+        button_label = ':purple_heart: :violet[View in Google Maps]'
         st.link_button(button_label, google_maps_url, help="Open Google Map Layout", type="secondary", disabled=False, use_container_width=False)
 
 
