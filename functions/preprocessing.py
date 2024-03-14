@@ -21,8 +21,9 @@ def convert_seconds(seconds):
 def individual_distance_time(ori,dest):
     now = datetime.now()
     duration_in_traffic = gmaps.distance_matrix(ori,dest,mode="driving",departure_time=now,traffic_model="best_guess",region="SG")['rows'][0]['elements'][0]['duration_in_traffic']['value']
+    distance = gmaps.distance_matrix(ori,dest,mode="driving",departure_time=now,traffic_model="best_guess",region="SG")['rows'][0]['elements'][0]['distance']['text']
     hours, minutes = convert_seconds(duration_in_traffic)
-    return hours, minutes
+    return hours, minutes, distance
 
 
 def generate_permutation_duration(permutations_list,postal_code_distance_matrix_dict,postal_code_list):

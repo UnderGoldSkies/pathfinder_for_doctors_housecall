@@ -116,8 +116,8 @@ def main():
 
         for i in range(len(shortest_route)-1):
             if i == len(shortest_route)-2:
-                hours, minutes = individual_distance_time(shortest_route[i],shortest_route[i+1])
-                st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Duration: {minutes} minutes]")
+                hours, minutes, distance = individual_distance_time(shortest_route[i],shortest_route[i+1])
+                st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Distance/ Duration: {distance}/ {minutes} minutes]")
             else:
                 hours, minutes = individual_distance_time(shortest_route[i],shortest_route[i+1])
                 postal = list(shortest_route[i+1])
