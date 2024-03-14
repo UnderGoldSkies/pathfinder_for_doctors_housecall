@@ -119,7 +119,7 @@ def main():
                 hours, minutes, distance = individual_distance_time(shortest_route[i],shortest_route[i+1])
                 st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Distance/ Duration: {distance}/ {minutes} minutes]")
             else:
-                hours, minutes = individual_distance_time(shortest_route[i],shortest_route[i+1])
+                hours, minutes, distance = individual_distance_time(shortest_route[i],shortest_route[i+1])
                 postal = list(shortest_route[i+1])
                 bed = postal_to_bed_dict[''.join([char for char in postal if char.isdigit()])]
                 st.markdown(f":blue[{generate_ordinal_suffix(i+1)} Bed Visit ({bed})]: \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Duration:{minutes} minutes]")
