@@ -8,7 +8,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from datetime import datetime
-
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
 
@@ -17,7 +16,12 @@ def convert_seconds(seconds):
     hours = seconds // 3600
     # Calculate remaining minutes
     minutes = (seconds % 3600) // 60
+    return hours, minutes
 
+def individual_distance_time(ori,dest):
+    now = datetime.now()
+    duration_in_traffic = gmaps.distance_matrix(ori,dest,mode="driving",departure_time=now,traffic_model="best_guess",region="SG")['rows'][0]['elements'][0]['duration_in_traffic']['value']
+    hours, minutes = convert_seconds(duration_in_traffic)
     return hours, minutes
 
 
@@ -65,21 +69,21 @@ def generate_ordinal_suffix(i):
         return ordinal_suffix.ordinal(i)
 
 
-def generate_textboxes(num_textboxes):
-    textboxes = []
-    for i in range(num_textboxes):
-        if i == 0:
-            textbox_value = st.text_input(f":green[Start Point]", "119074")
-            textboxes.append(textbox_value)
+# def generate_textboxes(num_textboxes):
+#     textboxes = []
+#     for i in range(num_textboxes):
+#         if i == 0:
+#             textbox_value = st.text_input(f":green[Start Point]", "119074")
+#             textboxes.append(textbox_value)
 
-        elif i == (num_textboxes-1):
-            textbox_value = st.text_input(f":red[End Point]", "119074")
-            textboxes.append(textbox_value)
+#         elif i == (num_textboxes-1):
+#             textbox_value = st.text_input(f":red[End Point]", "119074")
+#             textboxes.append(textbox_value)
 
-        else:
-            textbox_value = st.text_input(f"House Visit {i}", "")
-            textboxes.append(textbox_value)
-    return textboxes
+#         else:
+#             textbox_value = st.text_input(f"House Visit {i}", "")
+#             textboxes.append(textbox_value)
+#     return textboxes
 
 def validate_postal_code(postal_code):
 
@@ -88,3 +92,32 @@ def validate_postal_code(postal_code):
     #result = confirmation_level == "CONFIRMED" or confirmation_level == "UNCONFIRMED_BUT_PLAUSIBLE"
 
     return confirmation_level
+
+
+import streamlit as st
+
+def generate_textboxes(num_textboxes):
+    postal_to_bed_dict = {}
+    textboxes = []
+    numboxes = []
+    for i in range(num_textboxes):
+        col = st.columns(2)  # Create two columns
+        if i == 0:
+            # For the first textbox, use the Start Point label
+            textbox_value = col[0].text_input(":green[Start Point]", "119074")
+            textboxes.append(textbox_value)
+        elif i == (num_textboxes - 1):
+            # For the last textbox, use the End Point label
+            textbox_value = col[0].text_input(":red[End Point]", "119074")
+            textboxes.append(textbox_value)
+        else:
+            # For other textboxes, use the House Visit label
+            textbox_value = col[0].text_input(f"House Visit {i}", "")
+            # Assuming you want a number input for each textbox (other than the first and last),
+            # and you want to place it next to each corresponding textbox.
+            number_value = col[1].number_input(f"Bed Number for Visit {i}", min_value=0, key=f'num{i}')  # Added a unique key for each number input
+            textboxes.append(textbox_value)
+            numboxes.append(number_value)
+            postal_to_bed_dict[textbox_value]=number_value
+
+    return textboxes, numboxes, postal_to_bed_dict

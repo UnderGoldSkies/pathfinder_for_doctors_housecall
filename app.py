@@ -3,7 +3,8 @@ import pandas as pd
 from itertools import permutations
 import googlemaps
 from htmlTemplates import directions_map, directions_map_full
-from functions.preprocessing import generate_ordinal_suffix,generate_pair_distance,generate_permutation_duration,generate_textboxes,validate_postal_code, convert_seconds
+from functions.preprocessing import generate_ordinal_suffix,generate_pair_distance,generate_permutation_duration,generate_textboxes,validate_postal_code, convert_seconds, individual_distance_time
+
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 gmaps = googlemaps.Client(key=google_api_key)
 
@@ -41,7 +42,7 @@ def main():
         st.header(':violet[Step 2]')
         st.write('Input Address name/ Postal code to Visit and Press Validate Address')
         # Generate and display the textboxes
-        postal_code_list = generate_textboxes(num_textboxes+2)
+        postal_code_list, numboxes, postal_to_bed_dict = generate_textboxes(num_textboxes+2)
 
         if st.sidebar.button("Validate Address"):
             # Check for missing boxes
@@ -107,8 +108,6 @@ def main():
                         }
                     </style>
                     """, unsafe_allow_html=True)
-
-
     if shortest_route != None:
         # Use st.components.v1.html to display the iframe in Streamlit
         origin = shortest_route[0]
@@ -117,9 +116,13 @@ def main():
 
         for i in range(len(shortest_route)-1):
             if i == len(shortest_route)-2:
-                st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
+                hours, minutes = individual_distance_time(shortest_route[i],shortest_route[i+1])
+                st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Duration: {minutes} minutes]")
             else:
-                st.markdown(f"{generate_ordinal_suffix(i+1)} Visit:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}]")
+                hours, minutes = individual_distance_time(shortest_route[i],shortest_route[i+1])
+                postal = list(shortest_route[i+1])
+                bed = postal_to_bed_dict[''.join([char for char in postal if char.isdigit()])]
+                st.markdown(f":blue[{generate_ordinal_suffix(i+1)} Bed Visit ({bed})]: \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Duration:{minutes} minutes]")
 
         google_maps_url = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&waypoints={waypoints}"
 
