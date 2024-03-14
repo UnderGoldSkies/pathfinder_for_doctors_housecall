@@ -117,12 +117,12 @@ def main():
         for i in range(len(shortest_route)-1):
             if i == len(shortest_route)-2:
                 hours, minutes, distance = individual_distance_time(shortest_route[i],shortest_route[i+1])
-                st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Distance/ Duration: {distance}/ {minutes} minutes]")
+                st.markdown(f"Last Destination:  \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}] :violet[Distance: {distance} Duration: {minutes} minutes]")
             else:
                 hours, minutes, distance = individual_distance_time(shortest_route[i],shortest_route[i+1])
                 postal = list(shortest_route[i+1])
                 bed = postal_to_bed_dict[''.join([char for char in postal if char.isdigit()])]
-                st.markdown(f":blue[{generate_ordinal_suffix(i+1)} Bed Visit ({bed})]: \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Duration:{minutes} minutes]")
+                st.markdown(f":blue[{generate_ordinal_suffix(i+1)} Bed Visit ({bed})]: \n	:large_green_circle: :green[From Address {shortest_route[i]}] :large_red_square: :red[To Address {shortest_route[i+1]}], :violet[Distance: {distance} Duration: {minutes} minutes]")
 
         google_maps_url = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&waypoints={waypoints}"
 
